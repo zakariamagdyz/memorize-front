@@ -1,8 +1,20 @@
 import ReactDom from "react-dom/client";
 import App from "./App";
+import LanguageProvider from "./contexts/localization";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 const Root = ReactDom.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-Root.render(<App />);
+Root.render(
+  <LanguageProvider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </LanguageProvider>
+);
