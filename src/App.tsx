@@ -1,18 +1,34 @@
-import React from "react";
-import { Container, AppBar, Typography } from "@mui/material";
-import memories from "./assets/images/memories.png";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { useMemo } from "react";
+import Header from "./components/Header/Header";
+import useArLanguage from "./hooks/useArLanguage";
+import useDarkMode from "./hooks/useDarkMode";
+import getTheme from "./style/theme";
+import RTLContent from "./components/RTLContent/RTL";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 
-interface IProps {}
-const App: React.FunctionComponent<IProps> = () => {
+type TProps = {};
+const App: React.FunctionComponent<TProps> = () => {
+  const [mode, colorMode] = useDarkMode();
+  const [lang] = useArLanguage();
+
+  // create memoize version from theme to prevent reevaluate getTheme fn if state changes
+  const theme = useMemo(() => getTheme(mode, lang), [mode, lang]);
+
   return (
-    <Container maxWidth="lg">
-      <AppBar position="static" color="inherit">
-        <Typography variant="h2" align="center">
-          Memories
-        </Typography>
-        <img src={memories} alt="Memories" height="60" />
-      </AppBar>
-    </Container>
+    <RTLContent lang={lang}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Routes>
+          <Route element={<Header mode={mode} colorMode={colorMode} />}>
+            <Route index element={<Home />}></Route>
+            <Route path="/about" element={<div>sdf</div>}></Route>
+            <Route path="*" element={<div>Not found</div>}></Route>
+          </Route>
+        </Routes>
+      </ThemeProvider>
+    </RTLContent>
   );
 };
 
