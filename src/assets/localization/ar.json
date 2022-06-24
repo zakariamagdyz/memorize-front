@@ -1,5 +1,11 @@
 {
   "memorize": "الذكريات",
   "lang": "EN",
-  "dark": "مظلم"
+  "dark": "مظلم",
+  "login_header": "تسجيل الدخول",
+  "name_input": "الأسم",
+  "email_input": "البريد الإلكتروني",
+  "login_btn": "دخول",
+  "password_input": "كلمة المرور",
+  "remember_me": "تذكرني المرة القادمة"
 }

@@ -1,5 +1,11 @@
 {
   "memorize": "Memorize",
   "lang": "AR",
-  "dark": "dark"
+  "dark": "dark",
+  "login_header": "Login",
+  "name_input": "Name",
+  "email_input": "Email",
+  "login_btn": "Login",
+  "password_input": "Password",
+  "remember_me": "Remember me"
 }
