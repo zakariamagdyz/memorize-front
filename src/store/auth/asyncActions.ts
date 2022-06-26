@@ -61,7 +61,7 @@ export const getFreshCredentials = createAsyncThunk<
 >("auth/getFreshCredentials", async (_, ThunkApi) => {
   const { rejectWithValue } = ThunkApi;
   try {
-    const res = await publicCall.get<credentialApiResponse>(
+    const res = await privateCall.get<credentialApiResponse>(
       "/api/v1/auth/refresh-token"
     );
     return res.data;
@@ -100,7 +100,7 @@ export const activateAccount = createAsyncThunk<
   const { rejectWithValue } = ThunkApi;
   try {
     const res = await publicCall.post<credentialApiResponse>(
-      "/api/v1/auth/activateAccount",
+      "/api/v1/auth/activate-account",
       {
         activateToken,
       }

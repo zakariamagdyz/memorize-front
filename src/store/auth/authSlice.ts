@@ -24,7 +24,12 @@ const initialState: initialAuthState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    clearMsgs(state) {
+      state.error = null;
+      state.message = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
@@ -172,7 +177,11 @@ const authSlice = createSlice({
   },
 });
 
+export const { clearMsgs } = authSlice.actions;
 export const selectUser = (state: RootState) => state.auth.user;
 export const getAccessToken = (state: RootState) => state.auth.accessToken;
+export const getAuthErrMsg = (state: RootState) => state.auth.error;
+export const getAuthMsg = (state: RootState) => state.auth.message;
+export const getAuthStatus = (state: RootState) => state.auth.status;
 
 export default authSlice.reducer;

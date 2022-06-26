@@ -5,10 +5,14 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import "./apis/interseptors";
-import { getUserData } from "./store/middlewares/initActions";
+import {
+  getUserData,
+  initiatArLanguage,
+} from "./store/middlewares/initActions";
 
 // initial Actions
 getUserData();
+initiatArLanguage();
 
 const Root = ReactDom.createRoot(
   document.getElementById("root") as HTMLElement
