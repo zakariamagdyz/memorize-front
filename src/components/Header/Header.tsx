@@ -1,7 +1,5 @@
 import { AppBar, Button, Container, Stack, Typography } from "@mui/material";
-import React, { useContext } from "react";
 import memories from "../../assets/images/memories.png";
-import { LanguageContext } from "../../contexts/localization";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { Outlet } from "react-router-dom";
@@ -13,8 +11,9 @@ import {
 } from "../../store/theme/themeSlice";
 
 const Header = () => {
-  const { translate, lang, mode } = useAppSelector(selectTheme);
+  const { translate, mode } = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
+
   return (
     <Container maxWidth="xl" sx={{ padding: { xs: 0, sm: " 0 1rem" } }}>
       <AppBar position="static" color="inherit" sx={{ borderRadius: 2 }}>
