@@ -1,9 +1,12 @@
-declare module "*.png" {
-  const value: any;
-  export default value;
-}
+import { AxiosInstance } from "axios";
 
-declare module "*.pdf" {
-  const value: any;
-  export default value;
-}
+///  APIS & Axios
+
+type TMethodProps = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+type TAxiosMethods = "get" | "post" | "put" | "patch" | "delete";
+type TConfigObj = {
+  axiosInstance: AxiosInstance;
+  method: TMethodProps;
+  url: string;
+  requestConfig: object;
+};

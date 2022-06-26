@@ -5,15 +5,16 @@ import { LanguageContext } from "../../contexts/localization";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { Outlet } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import {
+  selectTheme,
+  toggleLang,
+  toggleMode,
+} from "../../store/theme/themeSlice";
 
-type Props = {
-  mode: "dark" | "light";
-  colorMode: { toggleColorMode: () => void };
-};
-
-const Header: React.FC<Props> = ({ mode, colorMode }) => {
-  const { translate, lang, setLang } = useContext(LanguageContext);
-
+const Header = () => {
+  const { translate, lang, mode } = useAppSelector(selectTheme);
+  const dispatch = useAppDispatch();
   return (
     <Container maxWidth="xl" sx={{ padding: { xs: 0, sm: " 0 1rem" } }}>
       <AppBar position="static" color="inherit" sx={{ borderRadius: 2 }}>
@@ -33,12 +34,12 @@ const Header: React.FC<Props> = ({ mode, colorMode }) => {
           <Stack>
             <Button
               onClick={() => {
-                setLang(lang === "ar" ? "en" : "ar");
+                dispatch(toggleLang());
               }}
             >
               {translate["lang"]}
             </Button>
-            <Button onClick={colorMode.toggleColorMode}>
+            <Button onClick={() => dispatch(toggleMode())}>
               {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
             </Button>
           </Stack>

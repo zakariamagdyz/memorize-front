@@ -12,6 +12,7 @@ const cacheRtl = createCache({
 type Props = { children: React.ReactNode; lang: "en" | "ar" };
 
 const RTLContent: React.FC<Props> = ({ children, lang }) => {
+
   if (lang === "ar") {
     return <CacheProvider value={cacheRtl}>{children}</CacheProvider>;
   }

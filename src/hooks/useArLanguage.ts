@@ -1,9 +1,12 @@
-import { useContext, useEffect } from "react";
-import { LanguageContext } from "../contexts/localization";
+import { useEffect } from "react";
+
+import { useAppSelector } from "../store/hooks";
+import { selectTheme } from "../store/theme/themeSlice";
 
 const useArLanguage = () => {
-  const { lang, setLang } = useContext(LanguageContext);
+  const { lang } = useAppSelector(selectTheme);
   useEffect(() => {
+    localStorage.setItem("lang", lang);
     if (lang === "ar") {
       document.documentElement.setAttribute("lang", "ar");
       document.documentElement.setAttribute("dir", "rtl");
@@ -11,11 +14,7 @@ const useArLanguage = () => {
       document.documentElement.setAttribute("lang", "en");
       document.documentElement.setAttribute("dir", "ltr");
     }
-
-    localStorage.setItem("lng", lang);
   }, [lang]);
-
-  return [lang, setLang] as const;
 };
 
 export default useArLanguage;
