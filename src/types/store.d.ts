@@ -1,5 +1,7 @@
 // User Slice
 
+import { EntityState } from "@reduxjs/toolkit";
+
 // Post Slice
 export type TPostState = {
   status: "idle" | "loading" | "failed" | "succeeded";
@@ -16,6 +18,11 @@ export interface TPostsResponse {
   results: TPost[];
 }
 
+export interface TransformRes {
+  info: Info;
+  results: EntityState<TPost>;
+}
+
 export interface Info {
   count: number;
   pages: number;
@@ -29,9 +36,18 @@ export interface TPost {
   title: Title;
   message: Message;
   tags: Tag[];
+  image: string;
+  creator: { name: string };
   likeCount: number;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface TPostBody {
+  title: string;
+  message: string;
+  tags: string;
+  image?: File;
 }
 
 // THEME

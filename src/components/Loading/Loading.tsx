@@ -1,13 +1,13 @@
 import React from "react";
 import { CircularProgress, Stack } from "@mui/material";
 
-const Loading = () => {
+const Loading: React.FC = () => {
   return (
     <Stack
       direction="row"
       justifyContent="center"
       alignItems={"center"}
-      height="60vh"
+      height="20vh"
     >
       <CircularProgress />
     </Stack>

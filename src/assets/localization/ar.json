@@ -18,6 +18,7 @@
   "last_name": "اللقب أو اسم العائلة",
   "password_confirm": "تأكيد كلمة المرور",
   "connection_lost": "عذراً، لقد انقطع إتصالك بالانترنت",
+  "signup_btn": "تسجيل",
   "existed_user": "لدي حساب بالفعل؟",
   "Forgot-Password": "---------Forgot-Password---------------",
   "forgot_password_title": "نسيت كلمة المرور",

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url =
+export const url =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:8000"
     : process.env.REACT_APP_API_URL;

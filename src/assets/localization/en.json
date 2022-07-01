@@ -18,6 +18,7 @@
   "password_confirm": "Password confirm",
   "existed_user": "Have an account?",
   "connection_lost": "Sorry, your internet connection is lost",
+  "signup_btn": "Sign up",
   "Forgot-Password": "---------Forgot-Password---------------",
   "forgot_password_title": "Forgot my password",
   "remember_pass": "I remember my password",

@@ -139,7 +139,7 @@ const Signup = () => {
                 disabled={isSubmitting}
                 type="submit"
               >
-                {isSubmitting ? translate["loading"] : translate["login_btn"]}
+                {isSubmitting ? translate["loading"] : translate["signup_btn"]}
               </Button>
               <Link to="/login">{translate["existed_user"]}</Link>
             </StyledForm>

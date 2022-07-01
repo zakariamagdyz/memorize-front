@@ -58,8 +58,6 @@ privateCall.interceptors.response.use(
       // if this promise throw error it will break the loop
       try {
         await store.dispatch(getFreshCredentials()).unwrap();
-        const res = await privateCall(prevRequest);
-        return res;
       } catch (error) {
         // if RT expired or not sent logout user from application
         const currentUser = store.getState().auth.user;
@@ -68,6 +66,8 @@ privateCall.interceptors.response.use(
         }
         throw error;
       }
+      const res = await privateCall(prevRequest);
+      return res;
     }
 
     // async function must throw error , instead axios will resolve it as a response

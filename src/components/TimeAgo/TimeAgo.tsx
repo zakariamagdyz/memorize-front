@@ -12,8 +12,8 @@ const TimeAgo: React.FC<Props> = ({ timestamp }) => {
   }
 
   return (
-    <span title={timestamp}>
-      &nbsp; <i>{timeAgo}</i>
+    <span title={timestamp} style={{ fontSize: ".8em" }}>
+      {timeAgo}
     </span>
   );
 };
