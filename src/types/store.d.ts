@@ -50,6 +50,11 @@ export interface TPostBody {
   image?: File;
 }
 
+export interface TUpdatePostBody {
+  data: FormData;
+  id: string;
+}
+
 // THEME
 
 export type ThemeInitState = {

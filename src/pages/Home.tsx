@@ -10,11 +10,11 @@ const Home = () => {
       <Grid
         container
         justifyContent="space-between"
-        spacing={2}
         mt="1rem"
         mb="1rem"
+        spacing={4}
       >
-        <Grid item xs={12} sm={7} sx={{ order: { xs: 2, sm: 1 } }}>
+        <Grid item xs={12} sm={8} sx={{ order: { xs: 2, sm: 1 } }}>
           <Posts />
         </Grid>
         <Grid item xs={12} sm={4} order={1}>

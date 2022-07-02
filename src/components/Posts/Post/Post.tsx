@@ -7,7 +7,6 @@ import {
   CardMedia,
   Button,
   Typography,
-  CardMediaProps,
   Box,
 } from "@mui/material";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
@@ -17,6 +16,11 @@ import { url } from "../../../apis/memorize";
 import { styled } from "@mui/material/styles";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useAppDispatch } from "../../../store/hooks";
+import {
+  setMemoForEdit,
+  useDeletePostMutation,
+} from "../../../store/posts/posts.slice";
 
 type props = {
   post: TPost;
@@ -52,7 +56,11 @@ const OverlayRight = styled(Box)(() => ({
   color: "white",
 }));
 
+///////////////////////////////////////
 const Post: React.FC<props> = ({ post }) => {
+  const dispatch = useAppDispatch();
+  const [deletePost, { isLoading }] = useDeletePostMutation();
+
   return (
     <StyledCard>
       <StyledCardMedia
@@ -63,11 +71,19 @@ const Post: React.FC<props> = ({ post }) => {
         <Typography variant="h6">{post.creator.name}</Typography>
         <TimeAgo timestamp={post.updatedAt} />
       </OverlayLeft>
-      <OverlayRight>
-        <Button style={{ color: "white" }} size="small" onClick={() => {}}>
-          <MoreHorizIcon />
-        </Button>
-      </OverlayRight>
+      {
+        <OverlayRight>
+          <Button
+            style={{ color: "white" }}
+            size="small"
+            onClick={() => {
+              dispatch(setMemoForEdit(post));
+            }}
+          >
+            <MoreHorizIcon />
+          </Button>
+        </OverlayRight>
+      }
       <Stack p="0 .4em" spacing={1}>
         <Typography variant="body2" color="textSecondary" component="h2">
           {post.tags.map((tag) => `#${tag} `)}
@@ -87,10 +103,14 @@ const Post: React.FC<props> = ({ post }) => {
         }}
       >
         <Button size="small" color="primary">
-          <ThumbUpAltIcon fontSize="small" /> Like &nbsp; {post.likeCount}
+          <ThumbUpAltIcon fontSize="small" /> &nbsp;Like &nbsp; {post.likeCount}
         </Button>
-        <Button size="small" color="primary">
-          <DeleteIcon fontSize="small" /> Delete
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => deletePost(post._id)}
+        >
+          <DeleteIcon fontSize="small" /> &nbsp; Delete
         </Button>
       </CardActions>
     </StyledCard>

@@ -12,7 +12,13 @@ import React, { useState } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import InputField from "../InputField/InputField";
 import * as Yup from "yup";
-import { useAddPostMutation } from "../../store/posts/posts.slice";
+import {
+  clearCurrentMemo,
+  selectCurrentMemo,
+  useAddPostMutation,
+  useUpdataPostMutation,
+} from "../../store/posts/posts.slice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 const StyledForm = styled(Form)({
   display: "flex",
@@ -23,6 +29,10 @@ const StyledForm = styled(Form)({
 const MemorizeForm = () => {
   const [file, setFile] = useState<File | null>(null);
   const [addPost, { isError, error }] = useAddPostMutation();
+  const [updatePost, { isError: updateIsError, error: updateError }] =
+    useUpdataPostMutation();
+  const currentMemo = useAppSelector(selectCurrentMemo);
+  const dispatch = useAppDispatch();
 
   const handleFileInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -31,9 +41,9 @@ const MemorizeForm = () => {
   };
 
   const initialValues = {
-    title: "",
-    message: "",
-    tags: "",
+    title: currentMemo?.title || "",
+    message: currentMemo?.message || "",
+    tags: currentMemo?.tags.toString() || "",
   };
 
   const validationSchema = Yup.object({
@@ -56,9 +66,15 @@ const MemorizeForm = () => {
     if (file) {
       formData.append("image", file);
     }
-    await addPost(formData);
+    if (currentMemo) {
+      await updatePost({ data: formData, id: currentMemo._id });
+    } else {
+      await addPost(formData);
+    }
+    // Reset Form, File, currentMemo
     resetForm();
     setFile(null);
+    dispatch(clearCurrentMemo());
   };
 
   return (
@@ -69,13 +85,19 @@ const MemorizeForm = () => {
             {(error as any).data.message}
           </Alert>
         )}
+        {updateIsError && (
+          <Alert variant="filled" severity="error">
+            {(updateError as any).data.message}
+          </Alert>
+        )}
         <Typography variant="h6" textAlign={"center"} padding=".8em 0">
-          Creating a Memory
+          {!currentMemo ? "Creating" : "Updating"} a Memory
         </Typography>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
+          enableReinitialize
         >
           {({ isSubmitting, handleChange, resetForm }) => (
             <StyledForm autoComplete="off">
@@ -113,7 +135,7 @@ const MemorizeForm = () => {
                   variant="contained"
                   size="small"
                 >
-                  Create Post
+                  {currentMemo ? "update" : "Create"}
                 </Button>
                 <Button
                   type="reset"
@@ -123,7 +145,9 @@ const MemorizeForm = () => {
                   variant="contained"
                   size="small"
                   onClick={() => {
+                    // Reset File, currentMemo, Form
                     setFile(null);
+                    dispatch(clearCurrentMemo());
                     resetForm();
                   }}
                 >

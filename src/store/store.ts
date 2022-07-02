@@ -1,17 +1,17 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 // Reducers
-import userSlice from "./user/user.slice";
 import authSlice from "./auth/authSlice";
 import themeSlice from "./theme/themeSlice";
+import postSlice from "./posts/posts.slice";
 // Middlewares
 import { apiSlice } from "./api/apiSlice";
 import { logout, setTheme } from "./middlewares/middlewares";
 
 const rootReducer = combineReducers({
-  user: userSlice,
-  [apiSlice.reducerPath]: apiSlice.reducer,
   auth: authSlice,
   theme: themeSlice,
+  post: postSlice,
+  [apiSlice.reducerPath]: apiSlice.reducer,
 });
 
 const store = configureStore({
