@@ -1,4 +1,4 @@
-import { Stack, Typography, Button, Alert } from "@mui/material";
+import { Stack, Typography, Button, Alert, Container } from "@mui/material";
 import React, { useLayoutEffect } from "react";
 import { styled } from "@mui/material/styles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -9,13 +9,9 @@ import * as Yup from "yup";
 import PasswordField from "../../components/InputField/PasswordField";
 import { useParams } from "react-router-dom";
 import { clearMsgs, getAuthErrMsg } from "../../store/auth/authSlice";
+import { StyledForm, StyledPaper } from "./auth.style";
 
 ///////////////////////////////////////////////
-const StyledForm = styled(Form)({
-  display: "flex",
-  flexDirection: "column",
-  gap: "2rem",
-});
 
 const ResetPassword = () => {
   // get resetToken
@@ -64,8 +60,8 @@ const ResetPassword = () => {
   }, [dispatch]);
 
   return (
-    <Stack marginTop="5rem" direction="row" justifyContent="center">
-      <Stack sx={{ width: { xs: "90%", sm: "60%" } }} spacing={"1rem"}>
+    <Container maxWidth="xs" component="main">
+      <StyledPaper>
         <Typography variant="h2" marginBottom={"2rem"} width="100%">
           {translate["reset_pass_header"]}
         </Typography>
@@ -104,8 +100,8 @@ const ResetPassword = () => {
             </StyledForm>
           )}
         </Formik>
-      </Stack>
-    </Stack>
+      </StyledPaper>
+    </Container>
   );
 };
 

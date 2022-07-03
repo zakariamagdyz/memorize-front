@@ -1,10 +1,9 @@
-import { Stack, Typography, Button, Alert } from "@mui/material";
+import { Stack, Typography, Button, Alert, Container } from "@mui/material";
 import React, { useLayoutEffect } from "react";
-import { styled } from "@mui/material/styles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectTheme } from "../../store/theme/themeSlice";
 import { forgotPassword } from "../../store/auth/asyncActions";
-import { Formik, Form, FormikHelpers } from "formik";
+import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import InputField from "../../components/InputField/InputField";
 import {
@@ -13,12 +12,7 @@ import {
   getAuthMsg,
 } from "../../store/auth/authSlice";
 import { Link } from "react-router-dom";
-
-const StyledForm = styled(Form)({
-  display: "flex",
-  flexDirection: "column",
-  gap: "2rem",
-});
+import { StyledForm, StyledPaper } from "./auth.style";
 
 const ForgotPassword = () => {
   // get translator
@@ -54,9 +48,14 @@ const ForgotPassword = () => {
   }, [dispatch]);
 
   return (
-    <Stack marginTop="5rem" direction="row" justifyContent="center">
-      <Stack sx={{ width: { xs: "90%", sm: "60%" } }} spacing={"1rem"}>
-        <Typography variant="h2" marginBottom={"2rem"} width="100%">
+    <Container maxWidth="xs" component="main">
+      <StyledPaper>
+        <Typography
+          variant="h2"
+          margin={"2rem 0"}
+          width="100%"
+          sx={{ whiteSpace: "nowrap", fontSize: "2.5rem !important" }}
+        >
           {translate["forgot_password_title"]}
         </Typography>
         {errMsg && (
@@ -95,8 +94,8 @@ const ForgotPassword = () => {
             </StyledForm>
           )}
         </Formik>
-      </Stack>
-    </Stack>
+      </StyledPaper>
+    </Container>
   );
 };
 

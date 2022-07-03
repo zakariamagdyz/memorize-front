@@ -19,7 +19,11 @@ const Router = () => {
     <Suspense fallback={<Loading />}>
       <Routes>
         <Route element={<Header />}>
-          <Route index element={<div>Home Page</div>} />
+          <Route index element={<Home />} />
+          <Route element={<RequireAuth roles={[2001]} />}>
+            <Route path="about" element={<About />}></Route>
+            <Route path="unauthorized" element={<UnAuthorized />} />
+          </Route>
           <Route element={<RequireAnon />}>
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
@@ -32,11 +36,6 @@ const Router = () => {
               path="reset-password/:resetToken"
               element={<ResetPassword />}
             />
-          </Route>
-          <Route element={<RequireAuth roles={[2001]} />}>
-            <Route path="home" element={<Home />} />
-            <Route path="about" element={<About />}></Route>
-            <Route path="unauthorized" element={<UnAuthorized />} />
           </Route>
           <Route element={<RequireAuth roles={[2004]} />}>
             <Route path="editor" element={<div>Editor</div>} />

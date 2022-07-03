@@ -1,4 +1,14 @@
-import { AppBar, Button, Container, Stack, Typography } from "@mui/material";
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 import memories from "../../assets/images/memories.png";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
@@ -9,9 +19,12 @@ import {
   toggleLang,
   toggleMode,
 } from "../../store/theme/themeSlice";
+import { selectUser } from "../../store/auth/authSlice";
+import { logout } from "../../store/auth/asyncActions";
 
 const Header = () => {
   const { translate, mode } = useAppSelector(selectTheme);
+  const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
   return (
@@ -21,14 +34,29 @@ const Header = () => {
           <Stack
             direction="row"
             spacing={2}
-            justifyContent="center"
             alignItems="center"
             flex={1}
+            p="0 1em"
           >
             <Typography variant="h2" align="center" color="primary">
               {translate.memorize}
             </Typography>
             <img src={memories} alt="Memories" height="60" />
+          </Stack>
+          <Stack m="0 2em">
+            {user ? (
+              <Box display="flex">
+                <Avatar alt={user.name} src={user.avatar}>
+                  {user.name.charAt(0)}
+                </Avatar>
+                <Typography variant="h6">{user.name.split(" ")[0]}</Typography>
+                <Button onClick={() => dispatch(logout())}>Logout</Button>
+              </Box>
+            ) : (
+              <Button variant="contained" component={Link} to="/login">
+                Signin
+              </Button>
+            )}
           </Stack>
           <Stack>
             <Button

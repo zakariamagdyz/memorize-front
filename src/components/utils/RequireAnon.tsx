@@ -6,7 +6,7 @@ import { useAppSelector } from "../../store/hooks";
 
 const RequireAnon = () => {
   const currentUser = useAppSelector(selectUser);
-  if (currentUser) return <Navigate to="/home" replace />;
+  if (currentUser) return <Navigate to="/" replace />;
   return <Outlet />;
 };
 

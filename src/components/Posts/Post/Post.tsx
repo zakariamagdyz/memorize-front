@@ -20,6 +20,7 @@ import { useAppDispatch } from "../../../store/hooks";
 import {
   setMemoForEdit,
   useDeletePostMutation,
+  useLikePostMutation,
 } from "../../../store/posts/posts.slice";
 
 type props = {
@@ -59,7 +60,8 @@ const OverlayRight = styled(Box)(() => ({
 ///////////////////////////////////////
 const Post: React.FC<props> = ({ post }) => {
   const dispatch = useAppDispatch();
-  const [deletePost, { isLoading }] = useDeletePostMutation();
+  const [deletePost] = useDeletePostMutation();
+  const [likePost] = useLikePostMutation();
 
   return (
     <StyledCard>
@@ -69,7 +71,7 @@ const Post: React.FC<props> = ({ post }) => {
       />
       <OverlayLeft>
         <Typography variant="h6">{post.creator.name}</Typography>
-        <TimeAgo timestamp={post.updatedAt} />
+        <TimeAgo timestamp={post.createdAt} />
       </OverlayLeft>
       {
         <OverlayRight>
@@ -102,8 +104,9 @@ const Post: React.FC<props> = ({ post }) => {
           justifyContent: "space-between",
         }}
       >
-        <Button size="small" color="primary">
-          <ThumbUpAltIcon fontSize="small" /> &nbsp;Like &nbsp; {post.likeCount}
+        <Button size="small" color="primary" onClick={() => likePost(post._id)}>
+          <ThumbUpAltIcon fontSize="small" /> &nbsp;Like &nbsp;{" "}
+          {post.likeCount.length}
         </Button>
         <Button
           size="small"

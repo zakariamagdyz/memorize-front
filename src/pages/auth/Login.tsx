@@ -5,24 +5,20 @@ import {
   Checkbox,
   FormControlLabel,
   Alert,
+  Container,
 } from "@mui/material";
 import React, { useLayoutEffect } from "react";
-import { styled } from "@mui/material/styles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectTheme } from "../../store/theme/themeSlice";
 import { login } from "../../store/auth/asyncActions";
-import { Formik, Form, FormikHelpers } from "formik";
+import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import InputField from "../../components/InputField/InputField";
 import PasswordField from "../../components/InputField/PasswordField";
 import { clearMsgs, getAuthErrMsg } from "../../store/auth/authSlice";
 import { Link } from "react-router-dom";
-
-const StyledForm = styled(Form)({
-  display: "flex",
-  flexDirection: "column",
-  gap: "2rem",
-});
+import { StyledForm, StyledPaper } from "./auth.style";
+import GoogleBtn from "../../components/GoogleBtn/GoogleBtn";
 
 const Login = () => {
   // get translator
@@ -67,8 +63,8 @@ const Login = () => {
   }, [dispatch]);
 
   return (
-    <Stack marginTop="5rem" direction="row" justifyContent="center">
-      <Stack sx={{ width: { xs: "90%", sm: "60%" } }} spacing={"1rem"}>
+    <Container maxWidth="xs" component="main">
+      <StyledPaper elevation={6}>
         <Typography variant="h2" marginBottom={"2rem"} width="100%">
           {translate["login_header"]}
         </Typography>
@@ -105,14 +101,18 @@ const Login = () => {
                 }
                 label={translate["remember_me"]}
               />
-              <Button
-                variant="contained"
-                size="large"
-                disabled={isSubmitting}
-                type="submit"
-              >
-                {translate["login_btn"]}
-              </Button>
+              <Stack spacing={1}>
+                <Button
+                  variant="contained"
+                  size="large"
+                  disabled={isSubmitting}
+                  type="submit"
+                >
+                  {translate["login_btn"]}
+                </Button>
+                <GoogleBtn />
+              </Stack>
+
               <Stack spacing={1}>
                 <Link to="/signup">{translate["non_existed_user"]}</Link>
                 <Link to="/forgot-password">
@@ -122,8 +122,8 @@ const Login = () => {
             </StyledForm>
           )}
         </Formik>
-      </Stack>
-    </Stack>
+      </StyledPaper>
+    </Container>
   );
 };
 

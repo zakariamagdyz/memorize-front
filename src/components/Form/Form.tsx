@@ -102,7 +102,13 @@ const MemorizeForm = () => {
           {({ isSubmitting, handleChange, resetForm }) => (
             <StyledForm autoComplete="off">
               <InputField name="title" label="Title" size="small" />
-              <InputField name="message" label="Message" size="small" />
+              <InputField
+                name="message"
+                label="Message"
+                size="small"
+                rows={4}
+                multiline
+              />
               <InputField
                 name="tags"
                 label="Tags (coma separated)"

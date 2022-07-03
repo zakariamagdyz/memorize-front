@@ -37,8 +37,8 @@ export interface TPost {
   message: Message;
   tags: Tag[];
   image: string;
-  creator: { name: string };
-  likeCount: number;
+  creator: { name: string; _id: string };
+  likeCount: [string];
   createdAt: string;
   updatedAt: string;
 }
@@ -76,6 +76,7 @@ export type initialAuthState = {
 export type User = {
   _id: string;
   name: string;
+  avatar: string;
   email: string;
   roles: number[];
 };
