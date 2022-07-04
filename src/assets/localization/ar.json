@@ -18,7 +18,10 @@
   "last_name": "اللقب أو اسم العائلة",
   "password_confirm": "تأكيد كلمة المرور",
   "connection_lost": "عذراً، لقد انقطع إتصالك بالانترنت",
+<<<<<<< HEAD
   "signup_btn": "تسجيل",
+=======
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
   "existed_user": "لدي حساب بالفعل؟",
   "Forgot-Password": "---------Forgot-Password---------------",
   "forgot_password_title": "نسيت كلمة المرور",
@@ -37,6 +40,10 @@
   "NOT_FOUND_PAGE": "____________NOT_FOUND_PAGE____________",
   "go_back_to_home": "الذهاب الى الصفحة الرئيسية",
   "Oops": "عذرا، حدث خطأ",
+<<<<<<< HEAD
   "page_not_found": "هذة الصفحة غير موجودة",
   "somthing_wrong": "نعتذر حدث خطأ فني ، برجاء الرجوع الي الصفحة الرئيسية "
+=======
+  "page_not_found": "هذة الصفحة غير موجودة"
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
 }

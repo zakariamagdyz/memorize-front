@@ -1,9 +1,19 @@
+<<<<<<< HEAD
 import { Stack, Typography, Button, Alert, Container } from "@mui/material";
 import React, { useLayoutEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectTheme } from "../../store/theme/themeSlice";
 import { signup } from "../../store/auth/asyncActions";
 import { Formik, FormikHelpers } from "formik";
+=======
+import { Stack, Typography, Button, Alert } from "@mui/material";
+import React, { useLayoutEffect } from "react";
+import { styled } from "@mui/material/styles";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { selectTheme } from "../../store/theme/themeSlice";
+import { signup } from "../../store/auth/asyncActions";
+import { Formik, Form, FormikHelpers } from "formik";
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
 import * as Yup from "yup";
 import InputField from "../../components/InputField/InputField";
 import PasswordField from "../../components/InputField/PasswordField";
@@ -13,9 +23,19 @@ import {
   getAuthErrMsg,
   getAuthMsg,
 } from "../../store/auth/authSlice";
+<<<<<<< HEAD
 import { StyledForm, StyledPaper } from "./auth.style";
 
 ///////////////////////////////////////////////
+=======
+
+///////////////////////////////////////////////
+const StyledForm = styled(Form)({
+  display: "flex",
+  flexDirection: "column",
+  gap: "2rem",
+});
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
 
 const Signup = () => {
   // get translator
@@ -78,8 +98,13 @@ const Signup = () => {
   }, [dispatch]);
 
   return (
+<<<<<<< HEAD
     <Container maxWidth="xs" component="main">
       <StyledPaper>
+=======
+    <Stack marginTop="5rem" direction="row" justifyContent="center">
+      <Stack sx={{ width: { xs: "90%", sm: "60%" } }} spacing={"1rem"}>
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
         <Typography variant="h2" marginBottom={"2rem"} width="100%">
           {translate["signup_header"]}
         </Typography>
@@ -134,14 +159,23 @@ const Signup = () => {
                 disabled={isSubmitting}
                 type="submit"
               >
+<<<<<<< HEAD
                 {isSubmitting ? translate["loading"] : translate["signup_btn"]}
+=======
+                {isSubmitting ? translate["loading"] : translate["login_btn"]}
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
               </Button>
               <Link to="/login">{translate["existed_user"]}</Link>
             </StyledForm>
           )}
         </Formik>
+<<<<<<< HEAD
       </StyledPaper>
     </Container>
+=======
+      </Stack>
+    </Stack>
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
   );
 };
 

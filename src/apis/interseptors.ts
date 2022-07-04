@@ -69,7 +69,18 @@ privateCall.interceptors.response.use(
       const res = await privateCall(prevRequest);
       return res;
     }
+    // if RT expired or not sent logout user from application
+    if (err.response?.status === 401) {
+      const currentUser = store.getState().auth.user;
 
+<<<<<<< HEAD
+=======
+      if (currentUser) {
+        store.dispatch({ type: "auth/logout/fulfilled" });
+      }
+    }
+
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
     // async function must throw error , instead axios will resolve it as a response
     throw err;
   }

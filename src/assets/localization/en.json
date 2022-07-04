@@ -12,16 +12,25 @@
   "non_existed_user": "Don't Have an account?",
   "forgot_password": "Forgot my password?",
   "SIGNUP_PAGE": "---------SIGNUP_PAGE---------------",
+<<<<<<< HEAD
   "signup_header": "Sign up",
   "loading": "Loading...",
+=======
+  "loading": "LOAGIN...",
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
   "first_name": "First name",
   "last_name": "Last name",
   "password_confirm": "Password confirm",
   "existed_user": "Have an account?",
   "connection_lost": "Sorry, your internet connection is lost",
+<<<<<<< HEAD
   "signup_btn": "Sign up",
   "Forgot-Password": "---------Forgot-Password---------------",
   "forgot_password_title": "Forgot password",
+=======
+  "Forgot-Password": "---------Forgot-Password---------------",
+  "forgot_password_title": "Forgot my password",
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
   "remember_pass": "I remember my password",
   "send_mail": "send mail",
   "Reset-Password": "---------Reset-Password---------------",
@@ -37,6 +46,10 @@
   "NOT_FOUND_PAGE": "____________NOT_FOUND_PAGE____________",
   "go_back_to_home": "Go back to home",
   "Oops": "Ooops!!",
+<<<<<<< HEAD
   "page_not_found": "That page Doesn't exit or is unavaliable",
   "somthing_wrong": "Sorry, something went very wrong!"
+=======
+  "page_not_found": "That page Doesn't exit or is unavaliable"
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
 }

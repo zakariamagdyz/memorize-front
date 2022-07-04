@@ -11,7 +11,10 @@ const ForgotPassword = lazy(() => import("../../pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("../../pages/auth/ResetPassword"));
 const Activation = lazy(() => import("../../pages/auth/Activation"));
 const UnAuthorized = lazy(() => import("../../pages/auth/UnAuthorized"));
+<<<<<<< HEAD
 const About = lazy(() => import("../../pages/About"));
+=======
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
 const NotFound = lazy(() => import("../../components/NotFound/NotFound"));
 
 const Router = () => {
@@ -37,9 +40,20 @@ const Router = () => {
               element={<ResetPassword />}
             />
           </Route>
+<<<<<<< HEAD
           <Route element={<RequireAuth roles={[2004]} />}>
             <Route path="editor" element={<div>Editor</div>} />
           </Route>
+=======
+          <Route element={<RequireAuth roles={[2001]} />}>
+            <Route path="home" element={<Home />} />
+            <Route path="about" element={<div>sdf</div>}></Route>
+            <Route path="unauthorized" element={<UnAuthorized />} />
+          </Route>
+          <Route element={<RequireAuth roles={[2004]} />}>
+            <Route path="editor" element={<Home />} />
+          </Route>
+>>>>>>> b43c914f9ca3269dd40aed3c59a5802df7936405
           <Route path="*" element={<NotFound />}></Route>
         </Route>
       </Routes>
