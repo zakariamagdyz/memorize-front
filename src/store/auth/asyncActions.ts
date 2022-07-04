@@ -32,6 +32,26 @@ export const login = createAsyncThunk<
   }
 });
 ///////////////////////////////////////////////////
+/// Google login
+///////////////////////////////////////////////////
+export const googleLogin = createAsyncThunk<
+  credentialApiResponse,
+  string,
+  { rejectValue: ResponseError }
+>("auth/googleLogin", async (credential, { rejectWithValue }) => {
+  try {
+    const res = await publicCall.post<credentialApiResponse>(
+      "/api/v1/auth/google-login",
+      { credential }
+    );
+    return res.data;
+  } catch (error) {
+    if (!(error instanceof AxiosError)) throw error;
+    return rejectWithValue(error.response?.data);
+  }
+});
+
+///////////////////////////////////////////////////
 /// Signup
 ///////////////////////////////////////////////////
 export const signup = createAsyncThunk<

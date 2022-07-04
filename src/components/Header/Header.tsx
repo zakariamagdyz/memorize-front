@@ -45,13 +45,24 @@ const Header = () => {
           </Stack>
           <Stack m="0 2em">
             {user ? (
-              <Box display="flex">
-                <Avatar alt={user.name} src={user.avatar}>
-                  {user.name.charAt(0)}
-                </Avatar>
-                <Typography variant="h6">{user.name.split(" ")[0]}</Typography>
-                <Button onClick={() => dispatch(logout())}>Logout</Button>
-              </Box>
+              <Stack spacing={2} justifyContent="center">
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <Avatar alt={user.name} src={user.picture}>
+                    {user.name.charAt(0)}
+                  </Avatar>
+                  <Typography variant="h6">
+                    {user.name.split(" ")[0]}
+                  </Typography>
+                </Stack>
+                <Button
+                  onClick={() => dispatch(logout())}
+                  variant="contained"
+                  color="error"
+                  size="small"
+                >
+                  Logout
+                </Button>
+              </Stack>
             ) : (
               <Button variant="contained" component={Link} to="/login">
                 Signin

@@ -10,6 +10,7 @@ import {
   activateAccount,
   forgotPassword,
   resetPassword,
+  googleLogin,
   updatePassword,
 } from "./asyncActions";
 
@@ -49,7 +50,26 @@ const authSlice = createSlice({
         } else {
           state.error = action.error.message;
         }
-      }) ////////////////////////// getFreshCredentials
+      }) //////////////////////////// google login
+      .addCase(googleLogin.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+        state.message = null;
+      })
+      .addCase(googleLogin.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.accessToken = action.payload.accessToken;
+        state.user = action.payload.user;
+      })
+      .addCase(googleLogin.rejected, (state, action) => {
+        state.status = "failed";
+        if (action.payload) {
+          state.error = action.payload.message;
+        } else {
+          state.error = action.error.message;
+        }
+      })
+      ////////////////////////// getFreshCredentials
       .addCase(getFreshCredentials.pending, (state) => {
         state.status = "loading";
         state.error = null;

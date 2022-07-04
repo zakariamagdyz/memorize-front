@@ -4,14 +4,15 @@ import { Form } from "formik";
 export const StyledForm = styled(Form)({
   display: "flex",
   flexDirection: "column",
-  gap: "2rem",
+  gap: "1.5rem",
   width: "100%",
 });
 
 export const StyledPaper = styled(Paper)(({ theme }) => ({
   margin: theme.spacing(8, 0),
   display: "flex",
+  gap: "1rem",
   flexDirection: "column",
-  alignItems: "center",
+
   padding: theme.spacing(2),
 }));

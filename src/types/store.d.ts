@@ -76,7 +76,7 @@ export type initialAuthState = {
 export type User = {
   _id: string;
   name: string;
-  avatar: string;
+  picture?: string;
   email: string;
   roles: number[];
 };
